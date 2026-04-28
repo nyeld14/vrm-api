@@ -2,14 +2,14 @@ import json
 import logging
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 from .db import get_aurora_connection
 
 logger = logging.getLogger(__name__)
 
 
 class VRMFleetStatusView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request):
         try:
@@ -34,7 +34,7 @@ class VRMFleetStatusView(APIView):
 
 
 class VRMSiteDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self, request, installation_id):
         hours = int(request.query_params.get('hours', 24))
